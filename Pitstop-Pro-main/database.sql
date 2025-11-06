@@ -107,16 +107,6 @@ CREATE TABLE `tbl_slot` (
 -- Table structure for table `tbl_vehicles`
 --
 
-CREATE TABLE `tbl_vehicles` (
-  `vehicle_id` int(11) NOT NULL AUTO_INCREMENT,
-  `User_id_` int(11) DEFAULT NULL,
-  `registration_number` varchar(20) DEFAULT NULL UNIQUE,
-  `vehicle_company` varchar(20) DEFAULT NULL,
-  `model` varchar(100) DEFAULT NULL,
-  `color` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`vehicle_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indexes for dumped tables
@@ -145,7 +135,7 @@ ALTER TABLE `tbl_bill`
 --
 ALTER TABLE `tbl_bookings`
   ADD KEY `fk_bookings_user` (`User_id_`),
-  ADD KEY `fk_bookings_vehicle` (`vehicle_id`),
+  
   ADD KEY `fk_bookings_service` (`Service_id`);
 
 --
@@ -176,8 +166,7 @@ ALTER TABLE `tbl_slot`
 --
 -- Indexes for table `tbl_vehicles`
 --
-ALTER TABLE `tbl_vehicles`
-  ADD KEY `fk_tbl_vehicles_user` (`User_id_`);
+
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -229,7 +218,7 @@ ALTER TABLE `tbl_bill`
 ALTER TABLE `tbl_bookings`
   ADD CONSTRAINT `fk_bookings_service` FOREIGN KEY (`Service_id`) REFERENCES `tbl_services` (`Service_id`),
   ADD CONSTRAINT `fk_bookings_user` FOREIGN KEY (`User_id_`) REFERENCES `tbl_customer` (`User_id_`),
-  ADD CONSTRAINT `fk_bookings_vehicle` FOREIGN KEY (`vehicle_id`) REFERENCES `tbl_vehicles` (`vehicle_id`);
+
 
 --
 -- Constraints for table `tbl_feedback`
@@ -241,7 +230,5 @@ ALTER TABLE `tbl_feedback`
 --
 -- Constraints for table `tbl_vehicles`
 --
-ALTER TABLE `tbl_vehicles`
-  ADD CONSTRAINT `fk_tbl_vehicles_user` FOREIGN KEY (`User_id_`) REFERENCES `tbl_customer` (`User_id_`);
-COMMIT;
+
 
